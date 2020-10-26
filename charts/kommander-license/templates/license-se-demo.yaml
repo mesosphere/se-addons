@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  jwt: {{ .Values.license }}
+kind: Secret
+metadata:
+  name: license-secret
+  namespace: kommander
+type: Opaque
+---
+apiVersion: kommander.mesosphere.io/v1beta1
+kind: License
+metadata:
+  name: license-se-demo
+  namespace: kommander
+spec:
+  licenseRef:
+      name: license-secret
